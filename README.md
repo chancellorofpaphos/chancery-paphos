@@ -1,3 +1,3 @@
-# letters-patent-maker
+# chancery-paphos
 
-This code facilitates the creation of letters patent on behalf of His Majesty the King of Cyprus.
+This code facilitates the creation of letters patent on behalf of His Grace The Duke of Paphos.
