@@ -75,6 +75,7 @@ degrees_plural["marquess"] = "marquess"
 degrees_plural["earl"] = "earls"
 degrees_plural["viscount"] = "viscounts"
 degrees_plural["baron"] = "barons"
+degrees_plural["baronet"] = "baronets"
 
 standard_remainders = dict()
 standard_remainders["heirs-male"] = ("and the heirs male of #POSSESSIVE "+
