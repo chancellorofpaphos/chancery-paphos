@@ -1,19 +1,28 @@
-### This code holds a class which models a given letters patent of "other"
-### type.
+"""
+This code holds a class which models a given letters patent of "other" type.
+"""
 
 # Local imports.
 import constants
 
-# The class in question.
-class Patent_Other:
-  def __init__(self, pino, day, month, year, filling):
-    self.pino = pino
-    self.day = self.get_ordinal(day)
-    self.month = month
-    self.year = self.get_ordinal(year)
-    self.filling = filling
+##############
+# MAIN CLASS #
+##############
 
-  # Looks up the result in "constants.py".
-  def get_ordinal(self, n):
-    result = constants.ordinals[n]
+class PatentOther:
+    """ The class in question. """
+    def __init__(self, pino, day, month, year, filling):
+        self.pino = pino
+        self.day = get_ordinal(day)
+        self.month = month
+        self.year = get_ordinal(year)
+        self.filling = filling
+
+####################
+# HELPER FUNCTIONS #
+####################
+
+def get_ordinal(index):
+    """ Looks up the result in constants.py """
+    result = constants.ordinals[index]
     return result
