@@ -10,11 +10,11 @@ Configures the inputs for a given letters patent.
 # indicates a miscelleneous type of patent.
 patent_type = "other"
 
-pino = 484
+pino = 487
 
-day = 1
+day = 6
 # Write out the month's name in full.
-month = "Primilis"
+month = "Sextilis"
 year = 7
 
 #######################
@@ -23,18 +23,18 @@ year = 7
 
 # If the letters patent are NOT for a peerage, leave well alone.
 
-grantee = "John Moore"
+grantee = "Luke Babur Khan"
 # Either "male" of "female" - no non-binary nonsense!
 gender = "male"
 # Either "duke", "marquess", "earl", "viscount", "baron" or "baronet".
 degree = "baronet"
-title = "Baronet Moore of Tampa"
+title = "Baronet Babur"
 # Use a list type. The order here is the order in which they'll appear on
 # the letters patent.
 subsidiary_titles = []
 # Should begin with "Whereas" and end with a comma.
-whereas = ("Whereas my James Moore has achieved the feat of penetrating "+
-           "twenty-one willing and nubile girls on camera,")
+whereas = ("Whereas my Luke Babur Khan has achieved the feat of "+
+           "penetrating twenty-one willing and nubile girls on camera,")
 # Enter either a code for a standard remainder, or the custom remainder in
 # full, beginning with "and" and ending without punctuation.
 remainder = "heirs-general-and-bastards"
@@ -46,10 +46,11 @@ remainder = "heirs-general-and-bastards"
 # If the letters patent are NOT of "other" type, leave well alone.
 
 filling = (
-    "Be it enacted by my most excellent Grace, and by the authority of "+
-    "the same, that {\\hoskeroe Fionnghuala O'Connor}, commonly known as "+
-    "Fionnula Flanagan, of the Republic of Ireland, and {\\hoskeroe "+
-    "Stephane Caillard}, commonly known as St\\'ephane Caillard, of the "+
-    "French Republic, stand and be {\\hoskeroe Convicted and Attainted } "+
-    "of treachery, and that they incur all penalties and forfeitures as "+
-    "criminals charged, tried and condemned.")
+    "Whereas, on the first day of Duodecember in the fourth year of my "+
+    "regency in the Kingdom of Cyprus, I issued letters patent convicting "+
+    "one Cara Horgan of treachery,\n\n"
+    "Now let all know that I, in consideration of circumstances "+
+    "represented to me with due humility, am pleased to extend my mercy "+
+    "to the said { \\hoskeroe Cara Horgan } and to remit and "+
+    "{ \\hoskeroe Pardon } all such pains and forfeitures resulting "+
+    "from the aforesaid conviction.")

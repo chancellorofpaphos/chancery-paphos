@@ -24,7 +24,7 @@ class PatentPeerage:
         self.degree = degree
         self.title = title
         self.subsidiary_titles = get_subsidiary_titles(subsidiary_titles)
-        self.whereas = get_whereas(whereas)
+        self.whereas = whereas
         self.pronoun_nominative = self.get_pronoun_nominative()
         self.pronoun_dative = self.get_pronoun_dative()
         self.pronoun_possessive = self.get_pronoun_possessive()
@@ -131,13 +131,4 @@ def get_subsidiary_titles(inputs):
             result = result+"and "+title+", "
         else:
             result = result+title+", "
-    return result
-
-def get_whereas(whereas):
-    """ Adds an hspace, if necessary. """
-    result = ""
-    if ((whereas is None) or (whereas == "")):
-        return result
-    else:
-        result = "\\hspace{20pt} "+whereas
     return result
