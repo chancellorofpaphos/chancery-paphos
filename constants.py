@@ -81,11 +81,16 @@ standard_remainders = dict()
 standard_remainders["heirs-male"] = ("and the heirs male of #POSSESSIVE "+
                                      "body, lawfully begotten and to be "+
                                      "begotten")
+standard_remainders["heirs-female"] = ("and the heirs female of "+
+                                       "#POSSESSIVE body, lawfully "+
+                                       "begotten and to be begotten")
 standard_remainders["heirs-general"] = ("and the heirs of #POSSESSIVE "+
                                         "body, lawfully begotten and to "+
                                         "be begotten")
 standard_remainders["heirs-male-and-bastards"] = ("and the heirs male of "+
                                                   "#POSSESSIVE body")
+standard_remainders["heirs-female-and-bastards"] = ("and the heirs female "+
+                                                    "of #POSSESSIVE body")
 standard_remainders["heirs-general-and-bastards"] = ("and the heirs of "+
                                                      "#POSSESSIVE body")
 standard_remainders["perpetual"] = ("and #POSSESSIVE heirs whatsoever, "+
