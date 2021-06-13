@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# This script assumes that LaTeX is already installed.
+
+sudo snap install pdftk
