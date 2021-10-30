@@ -8,13 +8,13 @@ Configures the inputs for a given letters patent.
 
 # "peerage" indicates a patent granting a peerage or baronetage. "other"
 # indicates a miscelleneous type of patent.
-patent_type = "other"
+patent_type = "peerage"
 
-pino = 500
+pino = 501
 
 # Date stuff.
-day = 3
-month = "Quartilis" # Write out the month's name in full.
+day = 24
+month = "October" # Write out the month's name in full.
 year = 8
 
 #######################
@@ -23,16 +23,16 @@ year = 8
 
 # If the letters patent are NOT for a peerage, leave well alone.
 
-grantee = "Jacob Adams, Earl of the Valley"
+grantee = "James Michaels Esquire"
 gender = "male" # Either "male" of "female" - no non-binary nonsense!
-degree = "baron" # Either "duke", "marquess", etc.
-title = "Baron of Adams"
+degree = "baronet" # Either "duke", "marquess", etc.
+title = "Baronet Michaels"
 subsidiary_titles = [] # Use a list type.
 # The "whereas" should begin with "Whereas" and end with a comma.
-whereas = ("Whereas yesterday I issued letters patent creating the Barony of Adams, and promised to issue further letters patent granting said barony to another,")
+whereas = ("Whereas my James Michaels Esquire has achieved the milestone of penetrating twenty-one willing and nubile females on camera,")
 # Enter either a code for a standard remainder, or the custom remainder in
 # full, beginning with "and" and ending without punctuation.
-remainder = "perpetual"
+remainder = "heirs-male-and-bastards"
 
 #####################
 # OTHER-ONLY INPUTS #

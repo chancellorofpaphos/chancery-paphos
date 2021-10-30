@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# This code defines a scripts which installs all truetype fonts with files
+# located in the same directory.
+
+# Constants.
+PATH_TO_SYSTEM_TRUETYPE_DIR="/usr/share/fonts/truetype/"
+TRUETYPE_FONT_EXTENTSION="ttf"
+
+# Run script.
+sudo cp *.$TRUETYPE_FONT_EXTENSION $PATH_TO_SYSTEM_TRUETYPE_DIR
