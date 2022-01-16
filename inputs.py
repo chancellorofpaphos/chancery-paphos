@@ -17,6 +17,8 @@ day = 13
 month = "Unodecember" # Write out the month's name in full.
 year = 8
 
+addenda = None # A tuple of PDFs to be stapled onto the end.
+
 #######################
 # PEERAGE-ONLY INPUTS #
 #######################
@@ -27,7 +29,7 @@ grantee = "James Michaels Esquire"
 gender = "male" # Either "male" of "female" - no non-binary nonsense!
 degree = "baronet" # Either "duke", "marquess", etc.
 title = "Baronet Michaels"
-subsidiary_titles = [] # Use a list type.
+subsidiary_titles = None # Use a tuple type.
 # The "whereas" should begin with "Whereas" and end with a comma.
 whereas = "Whereas my James Michaels Esquire has achieved the milestone of penetrating twenty-one willing and nubile females on camera,"
 # Enter either a code for a standard remainder, or the custom remainder in

@@ -5,13 +5,11 @@ given peerage.
 
 # Standard imports.
 from dataclasses import dataclass
+from typing import ClassVar
 
 # Local imports.
 import config
 from patent_other import PatentOther, get_ordinal
-
-# Local constants.
-DEFAULT_PATH_TO_BASE = "base_peerage.tex"
 
 ##############
 # MAIN CLASS #
@@ -20,10 +18,7 @@ DEFAULT_PATH_TO_BASE = "base_peerage.tex"
 @dataclass
 class PatentPeerage(PatentOther):
     """ The class in question. """
-    pino: int = 0
-    day: str = None
-    month: str = None
-    year: int = 0
+    # Fields.
     grantee: str = None
     gender: str = None
     degree: str = None
@@ -42,6 +37,9 @@ class PatentPeerage(PatentOther):
     rights_clause: str = None
     degree_clause: str = None
     degree_plural: str = None
+
+    # Class attributes.
+    PATH_TO_BASE: ClassVar[str] = "base_peerage.tex"
 
     def build_object(self):
         """ Fill the fields of this object with something sensible. """
@@ -136,14 +134,9 @@ class PatentPeerage(PatentOther):
         """ Looks up the result in config.py. """
         return config.DEGREES_PLURAL[self.degree]
 
-    def make_main(
-            self,
-            path_to_base=DEFAULT_PATH_TO_BASE,
-            path_to_main=config.DEFAULT_PATH_TO_MAIN,
-            encoding=config.DEFAULT_ENCODING
-        ):
+    def make_main(self):
         """ Make the main file of LaTeX code. """
-        with open("base_peerage.tex", "r", encoding=encoding) as base_file:
+        with open(self.PATH_TO_BASE, "r", encoding=self.ENCODING) as base_file:
             main = base_file.read()
         main = main.replace("#PINO", str(self.pino))
         main = main.replace("#DAY", str(self.day))
@@ -166,7 +159,7 @@ class PatentPeerage(PatentOther):
         main = main.replace("#RIGHTS_CLAUSE", self.rights_clause)
         main = main.replace("#DEGREE_CLAUSE", self.degree_clause)
         main = main.replace("#DGR_PLURAL", self.degree_plural)
-        with open(path_to_main, "w", encoding=encoding) as main_file:
+        with open(self.PATH_TO_MAIN, "w", encoding=self.ENCODING) as main_file:
             main_file.write(main)
 
 ####################

@@ -8,7 +8,6 @@ import os
 # Local imports.
 import config
 from patent_peerage import PatentPeerage
-from pdf_utilities import make_pdf
 
 ###########
 # TESTING #
@@ -35,7 +34,6 @@ def test_vicedukedom(
             remainder="heirs-male"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)
@@ -64,7 +62,6 @@ def test_marquessate(
             remainder="heirs-male-and-bastards"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)
@@ -92,7 +89,6 @@ def test_earldom(
             remainder="heirs-female"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)
@@ -120,7 +116,6 @@ def test_viscountcy(
             remainder="heirs-general"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)
@@ -148,7 +143,6 @@ def test_barony(
             remainder="perpetual"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)
@@ -176,7 +170,6 @@ def test_baronetcy(
             remainder="heirs-male"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)
@@ -206,7 +199,6 @@ def test_female(
             remainder="heirs-male"
         )
     patent_obj.build()
-    make_pdf()
     assert os.path.exists(path_to_output)
     bytes_diff = abs(
         os.path.getsize(path_to_output)-os.path.getsize(path_to_expected)

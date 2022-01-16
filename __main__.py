@@ -6,7 +6,6 @@ This code builds a PDF containing a given letters patent.
 import inputs
 from patent_other import PatentOther
 from patent_peerage import PatentPeerage
-from pdf_utilities import make_pdf
 
 #############
 # FUNCTIONS #
@@ -26,7 +25,8 @@ def make_peerage_patent_obj():
         "title",
         "subsidiary_titles",
         "whereas",
-        "remainder"
+        "remainder",
+        "addenda"
     )
     for attribute_name in attributes_to_set:
         attribute_value = getattr(inputs, attribute_name)
@@ -41,15 +41,16 @@ def make_other_patent_obj():
         "day",
         "month",
         "year",
-        "filling"
+        "filling",
+        "addenda"
     )
     for attribute_name in attributes_to_set:
         attribute_value = getattr(inputs, attribute_name)
         setattr(result, attribute_name, attribute_value)
     return result
 
-def make_main():
-    """ Build the main file of LaTeX code."""
+def make_main_and_build():
+    """ Build the main file of LaTeX code, and then use that to build."""
     if inputs.patent_type == "peerage":
         patent_obj = make_peerage_patent_obj()
     else:
@@ -62,8 +63,7 @@ def make_main():
 
 def run():
     """ Run this file. """
-    make_main()
-    make_pdf()
+    make_main_and_build()
 
 if __name__ == "__main__":
     run()
