@@ -2,19 +2,25 @@
 This code defines some configurations for the whole repo.
 """
 
+# Installation stuff.
+DEFAULT_NON_PYTHON_PACKAGES = ("texlive-full", "poppler-utils")
+DEFAULT_PATH_TO_FONTS_DIR = "fonts"
+DEFAULT_PATH_TO_PIP_REQ = "pip_requirements.txt"
+DEFAULT_PATH_TO_SYSTEM_TRUETYPE_DIR="/usr/share/fonts/truetype/"
+
 # General stuff.
 DEFAULT_ENCODING = "utf-8"
 DEFAULT_MAX_ACCEPTABLE_BYTES_DIFF = 1024
 DEFAULT_PATH_TO_MAIN = "main.tex"
 DEFAULT_PATH_TO_OUTPUT = "out.pdf"
-ORDINALS = [
+ORDINALS = (
     None, "first", "second", "third", "fourth", "fifth", "sixth", "seventh",
     "eighth", "ninth", "tenth", "eleventh", "twelfth", "thirteenth",
     "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth",
     "nineteenth", "twentieth", "twenty-first", "twenty-second",
     "twenty-third", "twenty-fourth", "twenty-fifth", "twenty-sixth",
     "twenty-seventh", "twenty-eighth", "twenty-ninth", "thirtieth"
-]
+)
 
 # Peerage stuff.
 ADVANCE_CLAUSES = {

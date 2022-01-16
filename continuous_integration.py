@@ -5,7 +5,6 @@ routines.
 
 # Standard imports.
 import glob
-import os
 import subprocess
 
 # Non-standard imports.
@@ -39,7 +38,7 @@ def run_linter(min_lint_score=DEFAULT_MIN_LINT_SCORE):
 def run_continuous_integration():
     """ Run the continuous integration routines. """
     run_unit_tests()
-    #run_linter()
+    run_linter()
 
 ###################
 # RUN AND WRAP UP #
