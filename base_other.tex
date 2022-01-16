@@ -1,6 +1,6 @@
 \documentclass[varwidth=true,border=50pt]{standalone}
 
-\usepackage{microtype,mathtools,graphicx,fancyhdr}
+\usepackage{fancyhdr, graphicx, mathtools, microtype}
 \usepackage{fontspec}
 \usepackage[T1]{fontenc}
 
@@ -12,33 +12,34 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[R]{\includegraphics[height=50pt]{signature}}
+\fancyhead[R]{\includegraphics[height=50pt]{images/signature}}
 
 \begin{document}
+    \thispagestyle{fancy}
 
-\thispagestyle{fancy}
+    \noindent \includegraphics[width=\textwidth]{images/thomas_duke_of}
 
-\noindent \includegraphics[width=\textwidth]{thomas_duke_of}
+    {\LARGE
+        Paphos, Earl of Kinsey, Baron of Hosker, Duke of Limassol,
 
-{\LARGE
-Paphos, Earl of Kinsey, Baron of Hosker, Duke of Limassol,
+        \setlength{\parindent}{20pt}
 
-\setlength{\parindent}{20pt}
+        To all to whom these presents shall come, Greeting.\\
 
-To all to whom these presents shall come, Greeting.\\
+        #FILLING\\
 
-#FILLING\\
+        In witness whereof, I have caused these my letters to be made patent,
+        and the Great Seal of the Duchy of Paphos to be hereunto affixed, on
+        this the #DAY day of #MONTH in the #YEAR year of my regency in the
+        Kingdom of Cyprus.
+    }
 
-In witness whereof, I have caused these my letters to be made patent, and the Great Seal of the Duchy of Paphos to be hereunto affixed, on this the #DAY day of #MONTH in the #YEAR year of my regency in the Kingdom of Cyprus.
-}
+    \vspace{20pt}
 
-\vspace{20pt}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/seal}
+    \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{seal}
-\end{figure}
-
-\hfill {\footnotesize \texttt{PI{#PINO}}}
-
+    \hfill {\footnotesize \texttt{PI{#PINO}}}
 \end{document}

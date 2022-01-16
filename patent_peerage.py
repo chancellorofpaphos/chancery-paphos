@@ -3,28 +3,52 @@ This code holds a class which models the letters patent pertaining to a
 given peerage.
 """
 
+# Standard imports.
+from dataclasses import dataclass
+
 # Local imports.
-import constants
-from patent_other import get_ordinal
+import config
+from patent_other import PatentOther, get_ordinal
+
+# Local constants.
+DEFAULT_PATH_TO_BASE = "base_peerage.tex"
 
 ##############
 # MAIN CLASS #
 ##############
 
-class PatentPeerage:
+@dataclass
+class PatentPeerage(PatentOther):
     """ The class in question. """
-    def __init__(self, pino, day, month, year, grantee, gender, degree,
-                 title, subsidiary_titles, whereas, remainder):
-        self.pino = pino
-        self.day = get_ordinal(day)
-        self.month = month
-        self.year = get_ordinal(year)
-        self.grantee = grantee
-        self.gender = gender
-        self.degree = degree
-        self.title = title
-        self.subsidiary_titles = get_subsidiary_titles(subsidiary_titles)
-        self.whereas = whereas
+    pino: int = 0
+    day: str = None
+    month: str = None
+    year: int = 0
+    grantee: str = None
+    gender: str = None
+    degree: str = None
+    title: str = None
+    subsidiary_titles: tuple = None
+    whereas: str = None
+    remainder: str = None
+    pronoun_nominative: str = None
+    pronoun_dative: str = None
+    pronoun_possessive: str = None
+    advance_clause: str = None
+    trusty_clause: str = None
+    state_clause: str = None
+    dignify_clause: str = None
+    third_invocation: str = None
+    rights_clause: str = None
+    degree_clause: str = None
+    degree_plural: str = None
+
+    def build_object(self):
+        """ Fill the fields of this object with something sensible. """
+        self.day = get_ordinal(self.day)
+        self.year = get_ordinal(self.year)
+        self.subsidiary_titles = \
+            get_subsidiary_titles(self.subsidiary_titles)
         self.pronoun_nominative = self.get_pronoun_nominative()
         self.pronoun_dative = self.get_pronoun_dative()
         self.pronoun_possessive = self.get_pronoun_possessive()
@@ -33,87 +57,117 @@ class PatentPeerage:
         self.state_clause = self.get_state_clause()
         self.dignify_clause = self.get_dignify_clause()
         self.third_invocation = self.get_third_invocation()
-        self.remainder = self.get_remainder(remainder)
+        self.remainder = self.get_remainder()
         self.rights_clause = self.get_rights_clause()
         self.degree_clause = self.get_degree_clause()
         self.degree_plural = self.get_degree_plural()
 
     def get_pronoun_nominative(self):
-        """ Looks up the result in constants.py. """
-        return constants.pronouns_nominative[self.gender]
+        """ Looks up the result in config.py. """
+        return config.PRONOUNS_NOMINATIVE[self.gender]
 
     def get_pronoun_dative(self):
-        """ Looks up the result in constants.py. """
-        return constants.pronouns_dative[self.gender]
+        """ Looks up the result in config.py. """
+        return config.PRONOUNS_DATIVE[self.gender]
 
     def get_pronoun_possessive(self):
-        """ Looks up the result in constants.py. """
-        return constants.pronouns_possessive[self.gender]
+        """ Looks up the result in config.py. """
+        return config.PRONOUNS_POSSESSIVE[self.gender]
 
     def get_advance_clause(self):
-        """ Looks up the result in constants.py. """
+        """ Looks up the result in config.py. """
         if self.degree == "baronet":
-            return constants.advance_clauses["baronet"]
-        return constants.advance_clauses["peer"]
+            return config.ADVANCE_CLAUSES["baronet"]
+        return config.ADVANCE_CLAUSES["peer"]
 
     def get_trusty_clause(self):
-        """ Looks up the result in constants.py. """
+        """ Looks up the result in config.py. """
         if self.degree == "baronet":
             return ""
-        return constants.trusty_clauses[self.degree]
+        return config.TRUSTY_CLAUSES[self.degree]
 
     def get_state_clause(self):
-        """ Looks up the result in constants.py. """
+        """ Looks up the result in config.py. """
         if self.degree == "baronet":
-            return constants.state_clauses["baronet"]
-        return constants.state_clauses["peer"]
+            return config.STATE_CLAUSES["baronet"]
+        return config.STATE_CLAUSES["peer"]
 
     def get_dignify_clause(self):
-        """ Looks up the result in constants.py. """
-        if ((self.degree == "duke") or (self.degree == "marquess") or
-                (self.degree == "earl")):
+        """ Looks up the result in config.py. """
+        if self.degree in ("duke", "marquess", "earl"):
             if self.gender == "female":
-                result = constants.dignify_clauses["female"]+self.title+", "
+                result = config.DIGNIFY_CLAUSES["female"]+self.title+", "
             else:
-                result = constants.dignify_clauses[self.degree]
-            return result
-        else:
-            return ""
-
-    def get_third_invocation(self):
-        """ Constructs the third invocation of the title granted. """
-        if ((self.degree == "duke") or (self.degree == "marquess")):
-            result = ("the said name, state, degree, style, dignity, "+
-                      "tile and honour of "+self.title)
-        elif self.degree == "earl":
-            result = ("the said name, degree, style, dignity, title and "+
-                      "honour of "+self.title)
+                result = config.DIGNIFY_CLAUSES[self.degree]
         else:
             result = ""
         return result
 
-    def get_remainder(self, remainder):
-        """ Looks up the result in constants.py, or not. """
-        if remainder in constants.standard_remainders.keys():
-            result = constants.standard_remainders[remainder]
+    def get_third_invocation(self):
+        """ Constructs the third invocation of the title granted. """
+        if self.degree in config.NAME_CLAUSES:
+            result = config.NAME_CLAUSES[self.degree]+self.title
         else:
-            result = remainder
+            result = ""
+        return result
+
+    def get_remainder(self):
+        """ Looks up the result in config.py, or not. """
+        if self.remainder in config.STANDARD_REMAINDERS:
+            result = config.STANDARD_REMAINDERS[self.remainder]
+        else:
+            result = self.remainder
         result = result.replace("#POSSESSIVE", self.pronoun_possessive)
         return result
 
     def get_rights_clause(self):
-        """ Looks up the result in constants.py. """
+        """ Looks up the result in config.py. """
         if self.degree == "baronet":
-            return constants.rights_clauses["baronet"]
-        return constants.rights_clauses["peer"]
+            result = config.RIGHTS_CLAUSES["baronet"]
+        else:
+            result = config.RIGHTS_CLAUSES["peer"]
+        return result
 
     def get_degree_clause(self):
-        """ Looks up the result in constants.py. """
-        return constants.degree_clauses[self.degree]
+        """ Looks up the result in config.py. """
+        return config.DEGREE_CLAUSES[self.degree]
 
     def get_degree_plural(self):
-        """ Looks up the result in constants.py. """
-        return constants.degrees_plural[self.degree]
+        """ Looks up the result in config.py. """
+        return config.DEGREES_PLURAL[self.degree]
+
+    def make_main(
+            self,
+            path_to_base=DEFAULT_PATH_TO_BASE,
+            path_to_main=config.DEFAULT_PATH_TO_MAIN,
+            encoding=config.DEFAULT_ENCODING
+        ):
+        """ Make the main file of LaTeX code. """
+        with open("base_peerage.tex", "r", encoding=encoding) as base_file:
+            main = base_file.read()
+        main = main.replace("#PINO", str(self.pino))
+        main = main.replace("#DAY", str(self.day))
+        main = main.replace("#MONTH", self.month)
+        main = main.replace("#YEAR", str(self.year))
+        main = main.replace("#GRANTEE", self.grantee)
+        main = main.replace("#GENDER", self.gender)
+        main = main.replace("#TITLE", self.title)
+        main = main.replace("#SUBSIDIARY_TITLES", self.subsidiary_titles)
+        main = main.replace("#WHEREAS", self.whereas)
+        main = main.replace("#PRONOUN_NOMINATIVE", self.pronoun_nominative)
+        main = main.replace("#PRONOUN_DATIVE", self.pronoun_dative)
+        main = main.replace("#PRONOUN_POSSESSIVE", self.pronoun_possessive)
+        main = main.replace("#ADVANCE_CLAUSE", self.advance_clause)
+        main = main.replace("#TRUSTY_CLAUSE", self.trusty_clause)
+        main = main.replace("#STATE_CLAUSE", self.state_clause)
+        main = main.replace("#DIGNIFY_CLAUSE", self.dignify_clause)
+        main = main.replace("#THIRD_INVOCATION", self.third_invocation)
+        main = main.replace("#REMAINDER", self.remainder)
+        main = main.replace("#RIGHTS_CLAUSE", self.rights_clause)
+        main = main.replace("#DEGREE_CLAUSE", self.degree_clause)
+        main = main.replace("#DGR_PLURAL", self.degree_plural)
+        with open(path_to_main, "w", encoding=encoding) as main_file:
+            main_file.write(main)
 
 ####################
 # HELPER FUNCTIONS #

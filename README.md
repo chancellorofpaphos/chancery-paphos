@@ -1,3 +1,3 @@
-# chancery-paphos
+# Chancery: Paphos
 
 This code facilitates the creation of letters patent on behalf of His Grace The Duke of Paphos.

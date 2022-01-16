@@ -5,7 +5,6 @@
 
 # Constants.
 PATH_TO_SYSTEM_TRUETYPE_DIR="/usr/share/fonts/truetype/"
-TRUETYPE_FONT_EXTENTSION="ttf"
 
 # Run script.
-sudo cp *.$TRUETYPE_FONT_EXTENSION $PATH_TO_SYSTEM_TRUETYPE_DIR
+sudo cp *.ttf $PATH_TO_SYSTEM_TRUETYPE_DIR

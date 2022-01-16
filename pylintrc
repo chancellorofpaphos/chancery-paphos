@@ -1,0 +1,7 @@
+[MASTER]
+
+# This prevents any import issues.
+init-hook="import sys; sys.path.append('.')"
+
+# A list of files to be ignored.
+ignore=inputs.py
