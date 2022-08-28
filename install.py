@@ -48,7 +48,7 @@ def install_fonts(
         path_to_system_truetype_dir=config.DEFAULT_PATH_TO_SYSTEM_TRUETYPE_DIR
     ):
     """ Install all the "True Type" font files in fonts directory. """
-    filenames = glob.glob(path_to_fonts_dir+"/*.py")
+    filenames = glob.glob(path_to_fonts_dir+"/*.ttf")
     for filename in filenames:
         arguments = ["sudo", "cp", filename, path_to_system_truetype_dir]
         subprocess.run(arguments, check=True)
@@ -63,6 +63,7 @@ def install(
     install_via_apt("python3-pip")
     install_pip_packages(path_to_pip_req=path_to_pip_req)
     install_multiple_via_apt(non_python_packages)
+    install_fonts()
 
 ###################
 # RUN AND WRAP UP #

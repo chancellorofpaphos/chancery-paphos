@@ -8,14 +8,14 @@ Configures the inputs for a given letters patent.
 
 # "peerage" indicates a patent granting a peerage or baronetage. "other"
 # indicates a miscelleneous type of patent.
-patent_type = "peerage"
+patent_type = "other"
 
-pino = 502
+pino = 503
 
 # Date stuff.
-day = 13
-month = "Unodecember" # Write out the month's name in full.
-year = 8
+day = 30
+month = "Quintilis" # Write out the month's name in full.
+year = 9
 
 addenda = None # A tuple of PDFs to be stapled onto the end.
 
@@ -43,10 +43,10 @@ remainder = "heirs-male-and-bastards"
 # If the letters patent are NOT of "other" type, leave well alone.
 
 filling = (
-    "Whereas I issued letters patent on the tenth day of November in the fourth year of my regency in the Kingdom of Cyprus known as { \hoskeroe Gravitas Iniquitatis } concerning the seriousness of various crimes,\n\n"
-    "Now be it enacted as follows:\n\n"
-    "The letters patent known as { \hoskeroe Gravitas Iniquitatis } are hereby revoked and repealed.\n\n"
-    "Crimes shall be classified as Class A, Class B or Class C, with Class A being the most serious and Class C being the least serious.\n\n"
-    "Any violation of { \hoskeroe Statutum Censurae } involving either blasphemy or feminism, as these terms are defined within said statute, is a Class A offence; any violation of the same statute falling within the definition of less serious kinds of sexual perversion is a Class C offence. Any violation of { \hoskeroe Statutum Coculae } is considered a Class A offence. Any other violation of statute law is a Class B offence, unless the statute in question contains a provision to the contrary.\n\n"
-    "Classification of offences against common law shall be done on a case by case basis. However, the following offences are Class A offences in the absence of exceptional mitigating circumstances: aggravated assault, arson, extortion, fraud, grand larceny, murder, perjury, rape, and treason."
+    "Whereas it has proved necessary to define whom I recognise as holding a given nationality,\n\n"+
+    "Now be it enacted as follows:\n\n"+
+    "For the purposes of Paphian law, I recognise a person P as holding the nationality of a sovereign state S if:\n\n"+
+    "P has ever held, or has ever have been eligible to claim according to the laws of S, citizenship of S; or,\n\n"+
+    "Any parent or grandparent of P has ever held, or has ever have been eligible to claim according to the laws of S, citizenship of S; or,\n\n"+
+    "Before S came into existence, P lived within what is now the sovereign territory of S for at least ten years."
 )
