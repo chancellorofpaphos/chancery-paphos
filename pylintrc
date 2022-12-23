@@ -1,7 +1,9 @@
 [MASTER]
+ignore-patterns=test_*.py
+fail-under=8
 
-# This prevents any import issues.
-init-hook="import sys; sys.path.append('.')"
+[FORMAT]
+max-line-length=80
 
-# A list of files to be ignored.
-ignore=inputs.py
+[MESSAGES CONTROL]
+disable=import-error,no-member,too-many-instance-attributes,unspecified-encoding
