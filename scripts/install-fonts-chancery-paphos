@@ -1,0 +1,19 @@
+#!/bin/python3
+
+"""
+This code defines a script which installs the fonts.
+"""
+
+# Bespoke imports.
+from chancery_paphos import install_fonts
+
+###################
+# RUN AND WRAP UP #
+###################
+
+def run():
+    """ Run this file. """
+    install_fonts()
+
+if __name__ == "__main__":
+    run()

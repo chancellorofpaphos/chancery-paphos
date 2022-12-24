@@ -230,7 +230,7 @@ class PatentPeerage(Patent):
             (self.TOP_IMAGE_MARKER, self.PATH_TO_TOP_IMAGE),
             (self.SIGNATURE_MARKER, self.PATH_TO_SIGNATURE),
             (self.SEAL_MARKER, self.PATH_TO_SEAL),
-            (self.RAMNO_MARKER, str(self.ramno)),
+            (self.PINO_MARKER, str(self.pino)),
             (self.DAY_ORDSTR_MARKER, self.day_ordstr),
             (self.MONTH_STR_MARKER, self.month_str),
             (self.YEAR_ORDSTR_MARKER, self.year_ordstr),

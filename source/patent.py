@@ -3,7 +3,6 @@ This code defines an abstract PATENT class, to be inherited by child classes.
 """
 
 # Standard imports.
-import os
 import shutil
 import subprocess
 from dataclasses import dataclass
@@ -11,7 +10,7 @@ from pathlib import Path
 from typing import ClassVar
 
 # Local imports.
-from .constants import ORDINALS
+from .constants import ORDINALS, CYPRIAN_MONTHS
 
 # Local constants.
 WORKING_STEM = "main"
@@ -65,7 +64,7 @@ class Patent:
         if self.day_num and not self.day_ordstr:
             self.day_ordstr = ORDINALS[self.day_num]
         if (self.month_num is not None) and (not self.month_str):
-            self.month_str = ORDINALS[self.month_num]
+            self.month_str = CYPRIAN_MONTHS[self.month_num]
         if self.year_num and not self.year_ordstr:
             self.year_ordstr = ORDINALS[self.year_num]
 
@@ -96,7 +95,7 @@ class Patent:
     def clean(self):
         """ Clean up any redundant generated files. """
         for extension in self.EXTENSIONS_TO_REMOVE:
-            os.remove(WORKING_STEM+extension)
+            Path(WORKING_STEM+extension).unlink()
 
     def generate(self):
         """ (1) Build the TeX file. (2) Compile it. (3) Clean (if req). """

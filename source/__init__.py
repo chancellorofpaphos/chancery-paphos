@@ -4,4 +4,5 @@ of His Grace's Chancery.
 """
 
 # Local imports.
+from .fonts import install_fonts
 from .machine_interface import MachineInterface

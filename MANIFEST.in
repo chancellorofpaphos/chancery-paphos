@@ -1,2 +1,3 @@
+recursive-include source/fonts *
 recursive-include source/images *
 recursive-include source/tex *

@@ -21,6 +21,7 @@ ORDINALS = (
     "fourteenth",
     "fifteenth",
     "sixteenth",
+    "seventeenth",
     "eighteenth",
     "nineteenth",
     "twentieth",
@@ -36,6 +37,7 @@ ORDINALS = (
     "thirtieth"
 )
 CYPRIAN_MONTHS = (
+    None,
     "Primilis",
     "Sectilis",
     "Tertilis",
