@@ -68,22 +68,39 @@ class Patent:
         if self.year_num and not self.year_ordstr:
             self.year_ordstr = ORDINALS[self.year_num]
 
-    def build_working_tex(self):
-        """ Build the working TeX file, which we'll then compile. """
-        with open(self.PATH_TO_BASE, "r") as base_file:
-            tex_str = base_file.read()
-        replacement_pairs = (
+    def get_general_replacement_pairs(self):
+        """ Return a tuple of pairs of strings, giving the substrings to be
+        replaced and their replacements, for the GENERAL replacements that
+        need to be done for every kind of patent. """
+        result = (
             (self.TOP_IMAGE_MARKER, self.PATH_TO_TOP_IMAGE),
             (self.SIGNATURE_MARKER, self.PATH_TO_SIGNATURE),
             (self.SEAL_MARKER, self.PATH_TO_SEAL),
             (self.PINO_MARKER, str(self.pino)),
             (self.DAY_ORDSTR_MARKER, self.day_ordstr),
             (self.MONTH_STR_MARKER, self.month_str),
-            (self.YEAR_ORDSTR_MARKER, self.year_ordstr),
-            (self.BODY_MARKER, self.body)
+            (self.YEAR_ORDSTR_MARKER, self.year_ordstr)
+        )
+        return result
+
+    def get_special_replacement_pairs(self):
+        """ Return a tuple of pairs of strings, giving the substrings to be
+        replaced and their replacements, for the SPECIAL replacements that
+        need to be done only for the kind of patent corresponding to this
+        inheritance. """
+        result = ((self.BODY_MARKER, self.body),)
+        return result
+
+    def build_working_tex(self):
+        """ Build the working TeX file, which we'll then compile. """
+        with open(self.PATH_TO_BASE, "r") as base_file:
+            tex_str = base_file.read()
+        replacement_pairs = (
+            self.get_general_replacement_pairs()+
+            self.get_special_replacement_pairs()
         )
         for pair in replacement_pairs:
-            tex_str = tex_str.replace(pair[0], pair[1])
+            tex_str = tex_str.replace(*pair)
         with open(self.WORKING_FN, "w") as working_tex:
             working_tex.write(tex_str)
 

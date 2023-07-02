@@ -4,7 +4,6 @@ This code defines some functions which handle the fonts used by this package.
 
 # Standard imports.
 import shutil
-import subprocess
 from pathlib import Path
 
 # Local constants.

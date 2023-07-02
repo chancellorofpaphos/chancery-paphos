@@ -9,6 +9,7 @@ import json
 # Local imports.
 from .patent import Patent
 from .patent_peerage import PatentPeerage
+from .patent_peerage_feudal import PatentPeerageFeudal
 
 ##############
 # MAIN CLASS #
@@ -19,6 +20,7 @@ class MachineInterface:
     # Class attributes.
     PATENT_TYPE_KEY = "type"
     PEERAGE_TYPE = "peerage"
+    PEERAGE_FEUDAL_TYPE = "peerage-feudal"
 
     def __init__(self, path_to_input_file):
         self.path_to_input_file = path_to_input_file
@@ -29,7 +31,9 @@ class MachineInterface:
         with open(self.path_to_input_file, "r") as input_file:
             input_dict = json.loads(input_file.read())
         patent_type = input_dict.pop(self.PATENT_TYPE_KEY)
-        if patent_type == self.PEERAGE_TYPE:
+        if patent_type == self.PEERAGE_FEUDAL_TYPE:
+            result = PatentPeerageFeudal(**input_dict)
+        elif patent_type == self.PEERAGE_TYPE:
             result = PatentPeerage(**input_dict)
         else:
             result = Patent(**input_dict)

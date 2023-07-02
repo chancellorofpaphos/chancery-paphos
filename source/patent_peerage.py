@@ -222,18 +222,12 @@ class PatentPeerage(Patent):
         result = result.replace("#POSSESSIVE", self.pronoun_possessive)
         return result
 
-    def build_working_tex(self):
-        """ Build the working TeX file, which we'll then compile. """
-        with open(self.PATH_TO_BASE, "r") as base_file:
-            tex_str = base_file.read()
-        replacement_pairs = (
-            (self.TOP_IMAGE_MARKER, self.PATH_TO_TOP_IMAGE),
-            (self.SIGNATURE_MARKER, self.PATH_TO_SIGNATURE),
-            (self.SEAL_MARKER, self.PATH_TO_SEAL),
-            (self.PINO_MARKER, str(self.pino)),
-            (self.DAY_ORDSTR_MARKER, self.day_ordstr),
-            (self.MONTH_STR_MARKER, self.month_str),
-            (self.YEAR_ORDSTR_MARKER, self.year_ordstr),
+    def get_special_replacement_pairs(self):
+        """ Return a tuple of pairs of strings, giving the substrings to be
+        replaced and their replacements, for the SPECIAL replacements that
+        need to be done only for the kind of patent corresponding to this
+        inheritance. """
+        result = (
             (self.GRANTEE_MARKER, self.grantee),
             (self.TITLE_MARKER, self.title),
             (self.SUBSIDIARY_TITLES_MARKER, self.subsidiary_titles_str),
@@ -251,7 +245,4 @@ class PatentPeerage(Patent):
             (self.DEGREE_CLAUSE_MARKER, self.degree_clause),
             (self.DEGREE_PLURAL_MARKER, self.degree_plural)
         )
-        for pair in replacement_pairs:
-            tex_str = tex_str.replace(pair[0], pair[1])
-        with open(self.WORKING_FN, "w") as working_tex:
-            working_tex.write(tex_str)
+        return result
