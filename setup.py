@@ -7,11 +7,9 @@ from setuptools import setup
 
 # Local constants.
 PACKAGE_NAME = "chancery_paphos"
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 DESCRIPTION = "His Grace's Chancery"
-SCRIPT_PATHS = (
-    "scripts/compile-patent", "scripts/install-fonts-chancery-paphos"
-)
+SCRIPT_PATHS = ("scripts/compile-patent",)
 INSTALL_REQUIRES = ("hosker_utils",)
 INCLUDE_PACKAGE_DATA = True
 

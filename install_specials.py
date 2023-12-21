@@ -1,8 +1,10 @@
-#!/bin/python3
+"""
+This code defines a script which installs any software required by this package
+which cannot be installed via PIP.
+"""
 
-"""
-This code defines a script which installs the fonts.
-"""
+# Non-standard imports.
+from hosker_utils import install_apt_package
 
 # Bespoke imports.
 from chancery_paphos import install_fonts
@@ -13,6 +15,7 @@ from chancery_paphos import install_fonts
 
 def run():
     """ Run this file. """
+    install_apt_package("texlive-full")
     install_fonts()
 
 if __name__ == "__main__":

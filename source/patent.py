@@ -58,6 +58,8 @@ class Patent:
 
     def __post_init__(self):
         self.update_date_fields()
+        if self.pino:
+            self.path_to_output = str(self.pino)+".pdf"
 
     def update_date_fields(self):
         """ Set any unset date fields, where possible. """
