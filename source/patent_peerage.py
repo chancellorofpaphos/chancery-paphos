@@ -193,7 +193,7 @@ class PatentPeerage(Patent):
     def get_subsidiary_titles_str(self):
         """ Change the list into an injectable string. """
         if self.subsidiary_titles:
-            result = ", ".join(self.subsidiary_titles)
+            result = "and also of "+(", ".join(self.subsidiary_titles))+", "
             return result
         return ""
 

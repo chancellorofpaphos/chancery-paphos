@@ -16,6 +16,7 @@ from .constants import ORDINALS, CYPRIAN_MONTHS
 WORKING_STEM = "main"
 DEFAULT_PATH_TO_OUTPUT = "out.pdf"
 PATH_OBJ_TO_IMAGE_DIR = Path(__file__).parent/"images"
+PRE_PARAGRAPH = "    \\hspace{20pt} "
 
 ##############
 # MAIN CLASS #
@@ -53,6 +54,7 @@ class Patent:
     year_num: int = None
     year_ordstr: str = None
     body: str = None
+    body_paragraphs: list[str] = None
     path_to_output: str = DEFAULT_PATH_TO_OUTPUT
     clean_bool: bool = True
 
@@ -69,6 +71,8 @@ class Patent:
             self.month_str = CYPRIAN_MONTHS[self.month_num]
         if self.year_num and not self.year_ordstr:
             self.year_ordstr = ORDINALS[self.year_num]
+        if self.body_paragraphs and not self.body:
+            self.body = build_body_from_paragraphs(self.body_paragraphs)
 
     def get_general_replacement_pairs(self):
         """ Return a tuple of pairs of strings, giving the substrings to be
@@ -122,3 +126,13 @@ class Patent:
         self.compile_working_tex()
         if self.clean_bool:
             self.clean()
+
+####################
+# HELPER FUNCTIONS #
+####################
+
+def build_body_from_paragraphs(paragraphs):
+    """ Ronseal. """
+    between_paragraphs = "\n\n"+PRE_PARAGRAPH
+    result = between_paragraphs.join(paragraphs)
+    return result
