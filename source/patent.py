@@ -14,7 +14,8 @@ from .constants import ORDINALS, CYPRIAN_MONTHS
 
 # Local constants.
 WORKING_STEM = "main"
-DEFAULT_PATH_TO_OUTPUT = "out.pdf"
+OUTPUT_DIRNAME = "_out"
+DEFAULT_PATH_TO_OUTPUT = str(Path(OUTPUT_DIRNAME)/"patent.pdf")
 PATH_OBJ_TO_IMAGE_DIR = Path(__file__).parent/"images"
 PRE_PARAGRAPH = "    \\hspace{20pt} "
 
@@ -27,8 +28,8 @@ class Patent:
     """ The class in question. """
     # Class attributes.
     LATEX_COMMAND: ClassVar[str] = "xelatex"
-    WORKING_FN: ClassVar[str] = WORKING_STEM+".tex"
-    IMMEDIATE_OUTPUT_FN: ClassVar[str] = WORKING_STEM+".pdf"
+    WORKING_FN: ClassVar[str] = f"{WORKING_STEM}.tex"
+    IMMEDIATE_OUTPUT_FN: ClassVar[str] = f"{WORKING_STEM}.pdf"
     EXTENSIONS_TO_REMOVE: ClassVar[tuple] = (".aux", ".log", ".pdf", ".tex")
     PATH_TO_BASE: ClassVar[str] = str(Path(__file__).parent/"tex"/"base.tex")
     PATH_TO_TOP_IMAGE: ClassVar[str] = \
@@ -61,7 +62,7 @@ class Patent:
     def __post_init__(self):
         self.update_date_fields()
         if self.pino:
-            self.path_to_output = str(self.pino)+".pdf"
+            self.path_to_output = str(Path(OUTPUT_DIRNAME)/f"{self.pino}.pdf")
 
     def update_date_fields(self):
         """ Set any unset date fields, where possible. """
@@ -113,6 +114,7 @@ class Patent:
     def compile_working_tex(self):
         """ Compile the working TeX file. """
         subprocess.run([self.LATEX_COMMAND, self.WORKING_FN], check=True)
+        Path(OUTPUT_DIRNAME).mkdir(exist_ok=True)
         shutil.copyfile(self.IMMEDIATE_OUTPUT_FN, self.path_to_output)
 
     def clean(self):

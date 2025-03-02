@@ -1,6 +1,7 @@
 # Custom.
 input.json
 *.pdf
+_out/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
